@@ -53,18 +53,15 @@ class DeploysController extends Controller
         $deploys->notify(new TaskCompleted($request->get('name')));
 
         // getting project files from git
-        $command_line = 'git clone -b ' . $request->get('git_branch') . ' ' . $request->get('git_url') . ' ./gh';
-        exec($command_line);
-        /*$process = new Process($command_line);
+        $command_line = 'git clone -b ' . $request->get('git_branch') . ' ' . $request->get('git_url') . ' /opt/deploy_tmp';
+        $process = new Process($command_line);
         $process->run();
 
         $result = $process->getOutput();
 
-        dd($command_line);*/
-
         $result = null;
 
-        return redirect('/')->with(['success' => $result/*"Deployment $deploys->name created successfully!"*/, 'cmd_result' => $result]);
+        return redirect('/')->with(['success' => "Deployment $deploys->name created successfully!", 'cmd_result' => $result]);
     }
 
     /**

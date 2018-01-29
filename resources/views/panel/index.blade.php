@@ -14,7 +14,9 @@
                 @if(count($stacks) > 0)
                     <div class="list-group">
                         @foreach($stacks->all() as $stack)
-                            <a href="{{ url('/stacks', $stack->id) }}" class="list-group-item">{{ $stack->name }}</a>
+                            <a href="{{ url('/stacks', $stack->id) }}" class="list-group-item">
+                                {{ $stack->name }}
+                            </a>
                         @endforeach
                     </div>
                 @else
@@ -63,18 +65,21 @@
                                 <td>{{ $deploy->created_at->diffForHumans() }}</td>
                                 <td>
                                     <div id="status{{$deploy->id}}" class="status--check">
-                                        <a href="javascript:checkStatus('status{{$deploy->id}}', '{{ $deploy->servers->test_url }}')" class="btn btn-primary">
+                                        <a href="javascript:checkStatus('status{{$deploy->id}}', '{{ $deploy->servers->test_url }}')"
+                                           class="btn btn-primary">
                                             Check status
                                         </a>
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="javascript:checkStatus('{{ $deploy->servers->test_url }}')" class="btn btn-primary">
+                                    <a href="javascript:checkStatus('{{ $deploy->servers->test_url }}')"
+                                       class="btn btn-primary">
                                         Deploy Again
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="javascript:checkStatus('{{ $deploy->servers->test_url }}')" class="btn btn-danger">
+                                    <a href="javascript:checkStatus('{{ $deploy->servers->test_url }}')"
+                                       class="btn btn-danger">
                                         Rollback
                                     </a>
                                 </td>

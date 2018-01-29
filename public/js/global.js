@@ -45,14 +45,18 @@ $(document).ready(function () {
 
 function checkStatus(div, url) {
     $("#" + div).html('loading...');
-    $.ajax({
-        'url': url,
-        data: {},
-        success: function(xhr, status) {
-            $("#status").html('<b>Success</b> ' + $status_button);
-        },
-        error: function (xhr, status) {
-            $("#status").html('<b>Error</b> ' + $status_button);
-        }
-    });
+    try {
+        $.ajax({
+            'url': url,
+            data: {},
+            success: function(xhr, status) {
+                $("#status").html('<b>Success</b> ' + $status_button);
+            },
+            error: function (xhr, status) {
+                $("#status").html('<b>Error</b> ' + $status_button);
+            }
+        });
+    } catch (ex) {
+        $("#status").html('<b>Error</b> ' + $status_button);
+    }
 }
