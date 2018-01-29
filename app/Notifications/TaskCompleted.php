@@ -42,7 +42,7 @@ class TaskCompleted extends Notification
     public function toSlack($notifiable)
     {
         return (new SlackMessage)
-            ->content('The project $this->deploy_name was deployed successfully.');
+            ->content('The project {$this->deploy_name} was deployed successfully.');
     }
 
     /**
