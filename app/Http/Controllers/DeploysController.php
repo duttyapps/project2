@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Deploys;
 use App\Http\Requests\CreateDeployRequest;
+use App\Notifications\TaskCompleted;
 use App\Servers;
 use App\Stacks;
 use Illuminate\Http\Request;
@@ -48,6 +49,8 @@ class DeploysController extends Controller
         $deploys->stack_id = $request->get('stack_id');
         $deploys->server_id = $request->get('server_id');
         $deploys->save();
+
+        $deploys->notify(new TaskCompleted());
 
         // getting project files from git
         $command_line = 'git clone -b ' . $request->get('git_branch') . ' ' . $request->get('git_url') . ' ./gh';

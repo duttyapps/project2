@@ -231,4 +231,6 @@ return [
 
     ],
 
+    'slack_webhook_url' => 'https://hooks.slack.com/services/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',
+
 ];
