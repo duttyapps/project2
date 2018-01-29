@@ -63,7 +63,7 @@
                                 <td>{{ $deploy->created_at->diffForHumans() }}</td>
                                 <td>
                                     <div id="status{{$deploy->id}}" class="status--check">
-                                        <a href="javascript:checkStatus('status{{$deploy->id}}', {{ $deploy->servers->test_url }}')" class="btn btn-primary">
+                                        <a href="javascript:checkStatus('status{{$deploy->id}}', '{{ $deploy->servers->test_url }}')" class="btn btn-primary">
                                             Check status
                                         </a>
                                     </div>
