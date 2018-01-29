@@ -31,6 +31,9 @@
                     </small>
                 </h2>
                 @if(count($deploys) > 0)
+                    <div class="pull-right">
+                        {{ $deploys->links() }}
+                    </div>
                     <table class="table">
                         <thead>
                         <tr>
@@ -96,6 +99,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="pull-right">
+                        {{ $deploys->links() }}
+                    </div>
                 @else
                     No deployment was created.
                 @endif
