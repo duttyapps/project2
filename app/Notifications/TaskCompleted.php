@@ -10,15 +10,16 @@ use Illuminate\Notifications\Messages\SlackMessage;
 class TaskCompleted extends Notification
 {
     use Queueable;
+    private $deploy_name;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($deploy_name)
     {
-        //
+        $this->deploy_name = $deploy_name;
     }
 
     /**
@@ -41,7 +42,7 @@ class TaskCompleted extends Notification
     public function toSlack($notifiable)
     {
         return (new SlackMessage)
-            ->content('The project was deployed.');
+            ->content('The project ' + $this->deploy_name + ' was deployed successfully.');
     }
 
     /**
