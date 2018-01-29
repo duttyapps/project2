@@ -50,7 +50,7 @@ class DeploysController extends Controller
         $deploys->server_id = $request->get('server_id');
         $deploys->save();
 
-        $deploys->notify(new TaskCompleted());
+        $deploys->notify(new TaskCompleted($request->get('name')));
 
         // getting project files from git
         $command_line = 'git clone -b ' . $request->get('git_branch') . ' ' . $request->get('git_url') . ' ./gh';
