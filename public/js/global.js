@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    $status_button = $(".status--check").html();
+
     var type_action = {
         select_key: function () {
             $('.password-input').addClass('hide');
@@ -40,3 +42,17 @@ $(document).ready(function () {
         else if (type = 'anonymous') type_action.select_anonymous();
     });
 });
+
+function checkStatus(div, url) {
+    $("#" + div).html('loading...');
+    $.ajax({
+        'url': url,
+        data: {},
+        success: function(xhr, status) {
+            $("#status").html('<b>Success</b> ' + $status_button);
+        },
+        error: function (xhr, status) {
+            $("#status").html('<b>Error</b> ' + $status_button);
+        }
+    });
+}

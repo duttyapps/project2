@@ -42,7 +42,16 @@
                                 Created at
                             </th>
                             <th>
-                                -
+
+                            </th>
+                            <th>
+
+                            </th>
+                            <th>
+
+                            </th>
+                            <th>
+
                             </th>
                         </tr>
                         </thead>
@@ -53,9 +62,30 @@
                                 <td>{{  $deploy->stacks->name }}</td>
                                 <td>{{ $deploy->created_at->diffForHumans() }}</td>
                                 <td>
-                                    <a href="javascript:checkStatus('{{ $deploy->servers->test_url }}')">
-                                        Check status
+                                    <div id="status{{$deploy->id}}" class="status--check">
+                                        <a href="javascript:checkStatus('status{{$deploy->id}}', {{ $deploy->servers->test_url }}')" class="btn btn-primary">
+                                            Check status
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="javascript:checkStatus('{{ $deploy->servers->test_url }}')" class="btn btn-primary">
+                                        Deploy Again
                                     </a>
+                                </td>
+                                <td>
+                                    <a href="javascript:checkStatus('{{ $deploy->servers->test_url }}')" class="btn btn-danger">
+                                        Rollback
+                                    </a>
+                                </td>
+                                <td>
+                                    <form action="{{ url('/deploys', $deploy->id) }}" method="POST">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
